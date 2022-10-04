@@ -27,7 +27,12 @@ export class LoginComponent implements OnInit {
   constructor(private share: AccountService,
     private router: Router,
     private toatr: ToastrcustomService
-  ) { }
+  ) {
+    this.User.MaDonVi = localStorage.getItem("MaDonVi");
+    this.Org.username = this.User.MaDonVi;
+    this.User.TaiKhoan = localStorage.getItem("TaiKhoan");
+    this.User.MatKhau = localStorage.getItem("MatKhau");
+  }
 
   ngOnInit(): void {
   }
@@ -35,11 +40,12 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.loadding = true;
 
-    this.share.getToken(this.Org).subscribe(data => {
-      //Lay token thanh cong
-      if (data != null) {
+    let result = this.share.getToken(this.Org);
 
-        if (data != null && data != undefined) {
+    if (result != null) {
+
+      if (result != null && result != undefined) {
+
 
           this.User.MaDonVi = this.Org.username;
 
@@ -47,8 +53,15 @@ export class LoginComponent implements OnInit {
 
             this.loadding = false;
 
+            console.log("57", response)
 
             if (response.TrangThai == "OK") {
+              if (this.User.MaDonVi != null && this.User.TaiKhoan != null && this.User.MatKhau != null) {
+                localStorage.setItem("MaDonVi", this.User.MaDonVi);
+                localStorage.setItem("TaiKhoan", this.User.TaiKhoan);
+                localStorage.setItem("MatKhau", this.User.MatKhau);
+              }
+             
               this.toatr.showSuccess("Đăng nhập thành công")
               this.router.navigate(['/Home']);
             }
@@ -57,15 +70,10 @@ export class LoginComponent implements OnInit {
             }
           })
 
-        }
-
-
       }
 
-    })
 
-
-
+    }
 
   }
 

@@ -42,12 +42,13 @@ export class SidebarComponent implements OnInit {
   }
 
   categoryParent() {
-    var userInfo = this.AccountService.getUserInfo();
-    var listRole = userInfo.listRole;
+    // var userInfo = this.AccountService.getUserInfo();//log ra userInfo
+    // var listRole = userInfo.listRole;
+    var listRole: any = [];
+    listRole = ["SuperAdmin","Admin"];
     var arr: any = [];
     for (let i = 0; i < listRole.length; i++) {
       for (let j = 0; j < ROUTE_DATA.length; j++) {
-
         var index = ROUTE_DATA[j]['roles'].indexOf(listRole[i]);
         if (index > -1) {
 
@@ -73,8 +74,7 @@ export class SidebarComponent implements OnInit {
     for (let i = 0; i < data.length; i++) {
       for (let j = 0; j < listRole.length; j++) {
 
-        var index = data[i]['roles'].indexOf(listRole[j]);
-        if (index > -1) {
+        var index = data[i]['roles'];
 
           var test: any = {};
 
@@ -82,7 +82,7 @@ export class SidebarComponent implements OnInit {
           test['url'] = data[i]['url'];
 
           arr.push(test)
-        }
+
 
       }
     }

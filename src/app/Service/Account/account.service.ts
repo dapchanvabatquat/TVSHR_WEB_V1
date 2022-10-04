@@ -18,7 +18,14 @@ this._urlApi = httpService._urlApi;
    }
 
   getToken(Org: OrgInfo) {
-    return this.httpService.getToken(Org.username, Org.password);
+    if(Org.username)
+    {
+      return this.httpService.getToken(Org.username, Org.password);
+    }
+    else
+    {
+      return null;
+    }
       
   }
 

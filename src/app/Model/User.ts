@@ -1,12 +1,12 @@
 export interface UserLogin {
-    MaDonVi: string,
-    TaiKhoan: string ,
-    MatKhau : string,
+    MaDonVi: string | null,
+    TaiKhoan: string| null,
+    MatKhau : string| null,
     HoVaTen: string
 }
 
 export interface OrgInfo{
-    username:string,
+    username: string| null,
     password: string
 }
 
