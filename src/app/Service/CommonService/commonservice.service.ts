@@ -11,7 +11,7 @@ export class CommonserviceService {
   // _urlApi: string = environment.urlApi + '/api/';
   //  _urlApi: string = 'http://localhost:5000/api/';
   public _urlApi: string = 'http://localhost:1195/api/';
-
+  public static Token: string = "";
   constructor(
     private http: HttpClient
   ) {}
@@ -40,25 +40,16 @@ export class CommonserviceService {
 
   }
 
-  signIn(url: string, data: any) : Observable<any>
+  signIn(url: string, Token: string, data: any) : Observable<any>
   {
-    let objToken: string | null;
-    let tempObj: any;
-    let Token: any;
-    objToken = localStorage.getItem("Token");
-    if(objToken != null)
-    {
-       tempObj = JSON.parse(objToken);
-     Token = tempObj["Token"];
-    }
-    
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + Token,
-    });
-    return this.http.post<any>(this._urlApi + url, data, {
-      headers: headers,
-    });
+console.log("45", Token)
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + Token,
+      });
+      return this.http.post<any>(this._urlApi + url, data, {
+        headers: headers,
+      });
 
   }
 

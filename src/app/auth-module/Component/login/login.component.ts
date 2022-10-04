@@ -3,6 +3,7 @@ import { OrgInfo, UserLogin } from '../../../Model/User';
 import { AccountService } from '../../../Service/Account/account.service';
 import { Router } from '@angular/router';
 import { ToastrcustomService } from '../../../Interceptor/toastrcustom'
+import { CommonserviceService } from 'src/app/Service/CommonService/commonservice.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   isLoading: boolean = false;
   constructor(private share: AccountService,
+    private common: CommonserviceService,
     private router: Router,
     private toatr: ToastrcustomService
   ) {
@@ -46,10 +48,12 @@ export class LoginComponent implements OnInit {
 
       if (result != null && result != undefined) {
 
+        result.subscribe(rs=>{
+          localStorage.setItem("Token", rs.access_token)
 
           this.User.MaDonVi = this.Org.username;
 
-          this.share.Login(this.User).subscribe(response => {
+          this.share.Login(this.User, rs.access_token).subscribe(response => {
 
             this.loadding = false;
 
@@ -69,6 +73,10 @@ export class LoginComponent implements OnInit {
               this.toatr.showError(response.message)
             }
           })
+
+        })
+
+
 
       }
 

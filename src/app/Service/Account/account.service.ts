@@ -29,8 +29,8 @@ this._urlApi = httpService._urlApi;
       
   }
 
-  Login(User: UserLogin) {
-    return this.httpService.signIn('/Login', { CODEORG: User.MaDonVi, TaiKhoan: User.TaiKhoan, MatKhau: User.MatKhau, HoVaTen: User.HoVaTen })
+  Login(User: UserLogin, Token: string) {
+    return this.httpService.signIn('/Login', Token, { CODEORG: User.MaDonVi, TaiKhoan: User.TaiKhoan, MatKhau: User.MatKhau, HoVaTen: User.HoVaTen })
   }
 
   // refreshToken()
