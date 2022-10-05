@@ -6,7 +6,6 @@ import { DashboardModuleRoutingModule } from './dashboard-module-routing.module'
 import { HomeComponent } from './Component/home/home.component';
 import { PaginationComponent } from '../View/pagination/pagination.component';
 import { SidebarComponent } from './Component/sidebar/sidebar/sidebar.component';
-import { TaikhoanComponent } from './Component/taikhoan/taikhoan.component';
 import { MultidropdownComponent } from '../View/multidropdown/multidropdown.component';
 import { LoadingComponent } from '../View/loading/loading.component'
 //Thư viện
@@ -34,13 +33,7 @@ import { UnitDeleteComponent } from './Component/unit/unit-delete/unit-delete.co
 import { UnitIndexComponent } from './Component/unit/unit-index/unit-index.component';
 // import { VehicleCreateComponent } from './Component/vehicle-create/vehicle-create.component';
 import { SettingIndexComponent } from './Component/setting/setting-index/setting-index.component';
-import { QLTaiKhoanCreateComponent } from './Component/quan-ly-tai-khoan/tai-khoan-create/tai-khoan-create.component';
-import { QLTaiKhoanDeleteComponent } from './Component/quan-ly-tai-khoan/tai-khoan-delete/tai-khoan-delete.component';
-import { QLTaiKhoanIndexComponent } from './Component/quan-ly-tai-khoan/tai-khoan-index/tai-khoan-index.component';
-import { NotfoundComponent } from './Component/notfound/notfound.component';
 
-
-import { UserAuthorizationComponent } from './Component/quan-ly-tai-khoan/user-authorization/user-authorization.component';
 import { DanhsachnhanvienComponent } from './Component/danhsachnhanvien/danhsachnhanvien.component';
 import { TrangchuComponent } from './Component/trangchu/trangchu.component';
 
@@ -50,7 +43,6 @@ import { TrangchuComponent } from './Component/trangchu/trangchu.component';
   declarations: [
     HomeComponent,
 
-    TaikhoanComponent ,
     //view
     PaginationComponent,
 
@@ -67,11 +59,6 @@ import { TrangchuComponent } from './Component/trangchu/trangchu.component';
     MultidropdownComponent,
     SidebarComponent,
     ExampleComponent,
-    QLTaiKhoanCreateComponent,
-    QLTaiKhoanDeleteComponent,
-    QLTaiKhoanIndexComponent,
-    NotfoundComponent,
-    UserAuthorizationComponent,
     DanhsachnhanvienComponent,
     TrangchuComponent,
   ],

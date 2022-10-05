@@ -29,9 +29,9 @@ export class ExampleComponent implements OnInit {
   showLoading : boolean = false;
 
   ngOnInit(): void {
-    this.accountservice.getListSelectMulti().subscribe(res => {
-       this.items = res;
-    })
+    // this.accountservice.getListSelectMulti().subscribe(res => {
+    //    this.items = res;
+    // })
     // this.customerService.Paging(this.PageInfo.page, this.PageInfo.Keyword, this.PageInfo.pageSize)
     //   .subscribe(
     //     data => {

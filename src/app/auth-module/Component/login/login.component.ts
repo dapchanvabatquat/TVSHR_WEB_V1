@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit {
   }
 
   isLoading: boolean = false;
-  constructor(private share: AccountService,
+  constructor(
+    private share: AccountService,
     private common: CommonserviceService,
     private router: Router,
     private toatr: ToastrcustomService
@@ -64,7 +65,10 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem("MaDonVi", this.User.MaDonVi);
                 localStorage.setItem("TaiKhoan", this.User.TaiKhoan);
                 localStorage.setItem("MatKhau", this.User.MatKhau);
+                localStorage.setItem("_Token", rs.access_token);
               }
+
+
              
               this.toatr.showSuccess("Đăng nhập thành công")
               this.router.navigate(['/DashBoard/trang-chu']);

@@ -12,6 +12,7 @@ import { Account, lstAccount, AccountEdit, AccountCreate } from 'src/app/Model/A
 
 export class AccountService {
   _urlApi: string = "";
+  _Token: any;
 
   constructor(private httpService: CommonserviceService) {
 this._urlApi = httpService._urlApi;
@@ -30,59 +31,21 @@ this._urlApi = httpService._urlApi;
   }
 
   Login(User: UserLogin, Token: string) {
-    return this.httpService.signIn('/Login', Token, { CODEORG: User.MaDonVi, TaiKhoan: User.TaiKhoan, MatKhau: User.MatKhau, HoVaTen: User.HoVaTen })
+
+    this._Token = localStorage.getItem("Token");
+
+console.log("Token1", this._Token);
+    return this.httpService.signIn('/Login', this._Token, { CODEORG: User.MaDonVi, TaiKhoan: User.TaiKhoan, MatKhau: User.MatKhau, HoVaTen: User.HoVaTen })
   }
 
+  getTaskAction()
+  {
+    this._Token = localStorage.getItem("Token");
+    let CODEORG = localStorage.getItem("MaDonVi");
+    return this.httpService.getTaskAction('/getTaskAction', this._Token, { CODEORG: CODEORG })
+  }
   // refreshToken()
 
-  sendEmailorPhone(emailOrPhone: string) {
-    return this.httpService.postRequest('Account/ResendCode', { emailOrPhone: emailOrPhone })
-  }
-
-  sendCode(data: any) {
-    return this.httpService.postRequest('Account/VerifyCode', data);
-  }
-
-
-  getAccountInfo() {
-    return this.httpService.getRequest('Account/GetUserProfile');
-  }
-
-  updateAvatar(data: any) {
-    return this.httpService.postRequest('Account/updateAvatar', data);
-  }
-
-
-  getUserInfo() {
-    const UserInfo = JSON.parse(localStorage.getItem('UserInfo') || 'null');
-    return UserInfo;
-  }
-
-  updateUser(data: any) {
-    return this.httpService.postRequest('Account/UpdateUserProfile', data)
-  }
-
-  changPassword(data: any) {
-    return this.httpService.postRequest('Account/SetPassword', data);
-  }
-
-  logOut() {
-    localStorage.removeItem('UserInfo');
-  }
-
-  getListSelectMulti() {
-    return this.httpService.getRequest('admin/ManageAccount')
-      .pipe(map((data: any) => {
-        return data.map((i: any) => ({
-          id: i.id,
-          name: i.fullName
-        } as Item)) as Item[];
-      }))
-  }
-
-  refreshToken(data: any) {
-    return this.httpService.postRequest('Account/RefreshToken', data)
-  }
 
 
 
@@ -93,39 +56,4 @@ this._urlApi = httpService._urlApi;
       }))
   }
 
-  Insert(AccountCreate: AccountCreate) {
-    return this.httpService.postRequest('admin/ManageAccount', AccountCreate)
-      .pipe(map((data: any) => {
-        return data;
-      }))
-  }
-
-  GetDetail(id: any) {
-    return this.httpService.getRequest('admin/ManageAccount/' + id)
-      .pipe(map((data: Account) => {
-        return data;
-      }))
-  }
-
-  Update(AccountEdit: AccountEdit) {
-    return this.httpService.putRequest('admin/ManageAccount', AccountEdit)
-      .pipe(map((data: any) => {
-        return data;
-      }))
-  }
-
-  Delete(id: any) {
-    return this.httpService.deleteRequest('admin/ManageAccount/' + id)
-      .pipe(map((data: any) => {
-        return data;
-      }))
-  }
-
-  GetClaimUser(UserId: string) {
-    return this.httpService.getRequest('admin/ManageAccount/' + UserId + '/Claims');
-  }
-
-  GetAllClaim(Id: string) {
-    return this.httpService.getRequest('Account/GetClaimUserById/' + Id);
-  }
 }

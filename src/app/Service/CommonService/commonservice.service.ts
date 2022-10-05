@@ -42,7 +42,18 @@ export class CommonserviceService {
 
   signIn(url: string, Token: string, data: any) : Observable<any>
   {
-console.log("45", Token)
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + Token,
+      });
+      return this.http.post<any>(this._urlApi + url, data, {
+        headers: headers,
+      });
+
+  }
+
+  getTaskAction(url: string, Token: string, data: any) : Observable<any>
+  {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + Token,

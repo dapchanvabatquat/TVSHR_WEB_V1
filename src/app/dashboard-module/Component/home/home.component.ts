@@ -24,13 +24,13 @@ export class HomeComponent implements OnInit    {
     this.opened = true;
     this.show = false;
     
-    const UserInfo = this.accountService.getUserInfo();
-    // if(UserInfo == null){
-    //   this.router.navigate(['/Login']);    
-    // }
-    this.accountService.getAccountInfo().subscribe(response => {
-      this.urlAvartar = "https://45.124.94.191:5001"+response.avatar;
-    });
+    // const UserInfo = this.accountService.getUserInfo();
+    // // if(UserInfo == null){
+    // //   this.router.navigate(['/Login']);    
+    // // }
+    // this.accountService.getAccountInfo().subscribe(response => {
+    //   this.urlAvartar = "https://45.124.94.191:5001"+response.avatar;
+    // });
 
    }
 
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit    {
 
 
   LogOut(){
-      this.accountService.logOut();
+      // this.accountService.logOut();
       this.router.navigate(['/Login']);      // this.reload()
   }
 
