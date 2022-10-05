@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
               }
              
               this.toatr.showSuccess("Đăng nhập thành công")
-              this.router.navigate(['/Home']);
+              this.router.navigate(['/DashBoard/trang-chu']);
             }
             else {
               this.toatr.showError(response.message)

@@ -103,8 +103,8 @@ export const ROUTE_DATA: TypeRoute[] = [
 
             {
                 name :'Nhân viên',
-                url:'nhom-san-pham',
-                // roles: ["SuperAdmin", "Admin"],
+                url:'EmpList',
+                roles: ["Admin"],
 
             },
             {

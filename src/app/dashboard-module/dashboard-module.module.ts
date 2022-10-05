@@ -41,6 +41,8 @@ import { NotfoundComponent } from './Component/notfound/notfound.component';
 
 
 import { UserAuthorizationComponent } from './Component/quan-ly-tai-khoan/user-authorization/user-authorization.component';
+import { DanhsachnhanvienComponent } from './Component/danhsachnhanvien/danhsachnhanvien.component';
+import { TrangchuComponent } from './Component/trangchu/trangchu.component';
 
 
 
@@ -70,6 +72,8 @@ import { UserAuthorizationComponent } from './Component/quan-ly-tai-khoan/user-a
     QLTaiKhoanIndexComponent,
     NotfoundComponent,
     UserAuthorizationComponent,
+    DanhsachnhanvienComponent,
+    TrangchuComponent,
   ],
   imports: [
     CommonModule,
