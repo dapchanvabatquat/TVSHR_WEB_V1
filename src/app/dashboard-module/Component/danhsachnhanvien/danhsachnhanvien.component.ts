@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ToastrcustomService } from 'src/app/Interceptor/toastrcustom';
 import { AccountService } from 'src/app/Service/Account/account.service';
 import { CommonserviceService } from 'src/app/Service/CommonService/commonservice.service';
-
+import * as _ from 'lodash';
 @Component({
   selector: 'app-danhsachnhanvien',
   templateUrl: './danhsachnhanvien.component.html',
@@ -12,6 +12,7 @@ import { CommonserviceService } from 'src/app/Service/CommonService/commonservic
 })
 export class DanhsachnhanvienComponent implements OnInit {
 
+  filterText: any;
   isCreate: boolean = true;
   customerId: number = 0;
   loadding: boolean = false;
@@ -55,9 +56,20 @@ export class DanhsachnhanvienComponent implements OnInit {
     this.PageInfo = pageOfItems;
   }
 
-  onSearch(e: any) {
-    this.PageInfo.Keyword = e;
-    this.PageInfo.page = 1;
+  onSearch() {
+
+      if (this.filterText != '' || this.filterText != undefined) {
+        this.Emp = _.values(this.EmpAll);
+        this.Emp = this.Emp.filter((emp) => {
+          return (
+            (emp.FullName.toLowerCase().indexOf(this.filterText) > -1
+            || emp.UserName.toLowerCase().indexOf(this.filterText) > -1)
+          );
+        })
+      }
+      else {
+        this.Emp = this.EmpAll;
+      }
   }
 
 
