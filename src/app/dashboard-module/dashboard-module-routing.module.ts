@@ -12,6 +12,7 @@ import { RoleGuardService } from '../Interceptor//rolo.guard.service'
 import { NotfoundComponent } from './Component/notfound/notfound.component';
 import { DanhsachnhanvienComponent } from './Component/danhsachnhanvien/danhsachnhanvien.component';
 import { TrangchuComponent } from './Component/trangchu/trangchu.component';
+import { NghiphepComponent } from './Component/nghiphep/nghiphep.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,8 @@ const routes: Routes = [
       // Quản trị hệ thống
       { path: 'EmpList', component: DanhsachnhanvienComponent },
       { path: 'trang-chu', component: TrangchuComponent },
+      { path: 'Nghi-Phep', component: NghiphepComponent },
+
     ]
     }
 ];

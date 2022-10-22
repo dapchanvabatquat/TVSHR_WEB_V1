@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'Login', loadChildren: () => import('./auth-module/auth-module.module').then((m) => m.AuthModuleModule) },
   { path: 'DashBoard', loadChildren: () => import('./dashboard-module/dashboard-module.module').then((m) => m.DashboardModuleModule) },
   { path: 'EmpList', loadChildren: () => import('./dashboard-module/dashboard-module.module').then((m) => m.DashboardModuleModule) },
+  { path: 'Nghi-Phep', loadChildren: () => import('./dashboard-module/dashboard-module.module').then((m) => m.DashboardModuleModule) },
 
 ];
 

@@ -154,7 +154,7 @@ export const ROUTE_DATA: TypeRoute[] = [
             ,
             {
                 name :'Nghỉ phép',
-                url:'phuong-tien',
+                url:'Nghi-Phep',
                 // roles: ["Admin"],
 
             }

@@ -36,6 +36,7 @@ import { SettingIndexComponent } from './Component/setting/setting-index/setting
 
 import { DanhsachnhanvienComponent } from './Component/danhsachnhanvien/danhsachnhanvien.component';
 import { TrangchuComponent } from './Component/trangchu/trangchu.component';
+import { NghiphepComponent } from './Component/nghiphep/nghiphep.component';
 
 
 
@@ -61,6 +62,7 @@ import { TrangchuComponent } from './Component/trangchu/trangchu.component';
     ExampleComponent,
     DanhsachnhanvienComponent,
     TrangchuComponent,
+    NghiphepComponent,
   ],
   imports: [
     CommonModule,

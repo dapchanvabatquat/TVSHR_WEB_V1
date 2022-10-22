@@ -44,6 +44,19 @@ console.log("Token1", this._Token);
     let CODEORG = localStorage.getItem("MaDonVi");
     return this.httpService.getTaskAction('/getTaskAction', this._Token, { CODEORG: CODEORG })
   }
+
+  getAbsenceType()
+  {
+    this._Token = localStorage.getItem("Token");
+    let CODEORG = localStorage.getItem("MaDonVi");
+    return this.httpService.getTaskAction('/getAbsenceType', this._Token, { CODEORG: CODEORG })
+  }
+
+  setAbsence(CODEORG: any, UserName: any,AbsenceTypeId: any,FromDay: any,ToDay: any,Note: any)
+  {
+    this._Token = localStorage.getItem("Token");
+    return this.httpService.getTaskAction('/setAbsence', this._Token, { "CODEORG":CODEORG,"UserName":UserName,"AbsenceTypeId":AbsenceTypeId,"FromDay":FromDay,"ToDay":ToDay,"Note":Note })
+  }
   // refreshToken()
 
 
