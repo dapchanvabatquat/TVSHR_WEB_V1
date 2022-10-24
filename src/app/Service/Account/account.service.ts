@@ -54,9 +54,26 @@ console.log("Token1", this._Token);
 
   setAbsence(CODEORG: any, UserName: any,AbsenceTypeId: any,FromDay: any,ToDay: any,Note: any)
   {
+
     this._Token = localStorage.getItem("Token");
     return this.httpService.getTaskAction('/setAbsence', this._Token, { "CODEORG":CODEORG,"UserName":UserName,"AbsenceTypeId":AbsenceTypeId,"FromDay":FromDay,"ToDay":ToDay,"Note":Note })
   }
+
+  getAbsenceHistory(CODEORG: any, UserName: any,AbsenceTypeId: any,FromDay: any,ToDay: any)
+  {
+
+    this._Token = localStorage.getItem("Token");
+    return this.httpService.getTaskAction('/getAbsenceHistory', this._Token, { "CODEORG":CODEORG,"UserName":UserName,"AbsenceTypeId":AbsenceTypeId,"FromDay":FromDay,"ToDay":ToDay})
+  }
+
+  delAbsence(CODEORG: string, UserName: string, TaskId: number)
+  {
+
+    this._Token = localStorage.getItem("Token");
+    return this.httpService.getTaskAction('/delAbsence', this._Token, { "CODEORG":CODEORG,"UserName":UserName,"TaskId":TaskId})
+  }
+
+
   // refreshToken()
 
 

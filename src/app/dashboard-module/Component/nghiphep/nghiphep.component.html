@@ -1,5 +1,4 @@
-<div
-    style="margin: auto!important; margin-top: 15px!important; width: 96%; text-align: justify; padding: 10px;">
+<div style="margin: auto!important; margin-top: 15px!important; width: 96%; text-align: justify; padding: 10px;">
     <table style="width: 100%!important; max-width: 100%!important;">
         <tr>
             <td>
@@ -11,13 +10,13 @@
     <table style="width: 100%!important; max-width: 100%!important; margin-top: 10px;">
         <tr>
             <td style="padding-left: 0px; text-align: justify; width: 35%;">
-                    <select  placeholder="Chọn loại nghỉ phép" [(ngModel)]="AbsenceTypeId"
-                        aria-placeholder="Chọn loại nghỉ phép" okText="Chọn" cancelText="Bỏ qua"
-                        style="width: 100%!important; max-width: 100%!important; font-size: 25px; --padding-top: 0px; --padding-end: 5px; --padding-bottom: 0px; --padding-start: 0px; border: solid 0px #ddd;">
-                        <option *ngFor="let item of AbsenceType" value="{{item.Id}}">
-                            {{item.Name}}
-                        </option>
-                    </select>
+                <select placeholder="Chọn loại nghỉ phép" [(ngModel)]="AbsenceTypeId"
+                    aria-placeholder="Chọn loại nghỉ phép" okText="Chọn" cancelText="Bỏ qua"
+                    style="width: 100%!important; max-width: 100%!important; font-size: 25px; --padding-top: 0px; --padding-end: 5px; --padding-bottom: 0px; --padding-start: 0px; border: solid 0px #ddd;">
+                    <option *ngFor="let item of AbsenceType" value="{{item.Id}}">
+                        {{item.Name}}
+                    </option>
+                </select>
             </td>
 
             <td style="padding-left: 5px;">
@@ -28,7 +27,7 @@
                     (ngModelChange)="this.tuNgay = $event" min="2015-01-01" max="2025-12-31" class="form-control">
             </td>
             <td style="width:10%; text-align: center;">
-Đến ngày
+                Đến ngày
             </td>
             <td style="width: 25%!important; padding: 10px!important; padding-right: 10px!important;">
                 <input type="date" displayFormat="DD/MM/YYYY" [ngModel]="this.denNgay | date:'yyyy-MM-dd'"
@@ -47,11 +46,10 @@
     </table>
     <table style="width:100%">
         <tr>
-
             <td style="width:40%; padding-right: 10px;">
                 <textarea [(ngModel)]="Note" placeholder="Phần thông tin diễn giải khác ..."
                     style="height: 100px; width: 100%; border:solid 1px #ddd; border-radius: 2px; text-align: justify!important; padding-left: 0px; padding-right: 0px; margin-top: 0px!important;font-size: 25px;">
-      </textarea>
+                </textarea>
             </td>
         </tr>
     </table>
@@ -64,3 +62,76 @@
         </tr>
     </table>
 </div>
+
+  <div *ngIf="this.TotalItem == 0 && !this.ViewSearch" style="text-align: center; margin-top: 30px; color: rgb(179, 167, 167);">
+    <i class="bi bi-exclamation"></i>
+    <br>
+    Không có thông tin nào để hiển thị.
+  </div>
+
+  <div style="margin-top:10px;">
+    <div
+      style="margin: auto!important; width: 96%; text-align: center; padding: 10px; border-radius: 4px; height: 70px; box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+
+      <table style="width: 100%!important; max-width: 100%!important;">
+        <tr>
+          <td style="text-align: left; padding-left: 10px; font-weight: bold; color: #21409a;">
+            <i class="bi bi-calendar" style="font-size: 25px;"></i>
+          </td>
+          <td style="text-align: left; width: 300px!important; padding: 10px!important; padding-right: 5px!important;">
+            <input type="date" (change)="getHistoryData()" displayFormat="DD/MM/YYYY" [ngModel]="this.FromDay | date:'yyyy-MM-dd'"
+                    (ngModelChange)="this.FromDay= $event" min="2015-01-01" max="2025-12-31" class="form-control">
+          </td>
+          <td style="text-align: center;"> - </td>
+          <td style="text-align: left; width: 300px!important; padding: 10px!important; padding-left: 5px!important; text-align: right;">
+            <input type="date" (change)="getHistoryData()" displayFormat="DD/MM/YYYY" [ngModel]="this.ToDay| date:'yyyy-MM-dd'"
+                    (ngModelChange)="this.ToDay = $event" min="2015-01-01" max="2025-12-31" class="form-control">
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+  
+  <div style="padding: 10px!important;">
+
+    <div *ngFor="let item of AbsenceHistory"
+      style="margin-top: 5px; margin-bottom: 0px; padding-left: 5px!important; padding-right: 5px!important;">
+
+      <div style="margin-bottom: 15px; border-bottom: solid 1px #cecece; padding-bottom: 15px;">
+
+        <table style="width: 100%!important; max-width: 100%!important;">
+          <tr>
+            <td rowspan = "2" style="width: 40px; vertical-align: top;">
+                <i class="bi bi-puzzle"></i>
+              <!-- <ion-icon name="extension-puzzle-outline" style="font-size: 30px;"></ion-icon> -->
+            </td>
+            <td>
+              <div>
+                {{item.AbsenceTyName}}
+              </div>
+              <div style="font-size: 14px; margin-top: 5px;">
+                {{item.FromDay}} - {{item.ToDay}}
+              </div>
+            </td>
+            <td rowspan = "2" style="width: 30px; text-align: right;">
+
+                <i class="bi bi-check-circle" *ngIf = "item.ConfirmState"></i>
+                <i class="bi bi-trash" *ngIf = "!item.ConfirmState" (click)="onDeleteAction(item.UserName,item.Id)"></i>
+
+              <!-- <ion-icon *ngIf = "item.ConfirmState" name="checkbox-outline" style="font-size: 30px;"></ion-icon>
+              <ion-icon *ngIf = "!item.ConfirmState" (click)="onDeleteAction(item.UserName,item.Id)" name="trash-outline"
+                  style="color: #000; font-size: 20px; margin-bottom: -5px;"></ion-icon> -->
+            </td>
+          </tr>
+          <tr *ngIf = "item.Note != ''">
+            <td style = "padding-top: 5px; font-size: 14px;">
+              {{item.Note}}
+            </td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+
+  </div>

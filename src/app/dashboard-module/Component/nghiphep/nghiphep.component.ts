@@ -23,6 +23,18 @@ export class NghiphepComponent implements OnInit {
   AbsenceType!: Array<{ Id: Number, Name: string }>;
   AbsenceTypeAll: any;
 
+  AbsenceHistoryData!: Observable<any>;
+  AbsenceHistory!: Array<{ Id: number, UserName: string, AbsenceTypeId: number, AbsenceTyName: string, FromDay: string, ToDay: string, Note: string, DayCreate: string, ConfirmState: boolean, ConfirmUserName: string, ConfirmDay: string, ConfirmNote: string }>;
+  AbsenceHistoryAll: any;
+  TotalItem: number = 0;
+
+  DelAbsenceData!: Observable<any>;
+
+  ViewSearch: boolean = false;
+  ToDay: string = new Date().toISOString();
+  FromDay: string = new Date(new Date().getTime() - (7 * (1 * 24 * 60 * 60 * 1000))).toISOString();
+  
+
   tuNgay: string = new Date().toISOString();
   denNgay: string = new Date(new Date().getTime() + (1 * (1 * 24 * 60 * 60 * 1000))).toISOString();
   Note: string = "";
@@ -33,33 +45,101 @@ export class NghiphepComponent implements OnInit {
     private router: Router,
     private toatr: ToastrcustomService
   ) {
+
+    var date: Date;
+    date = new Date();
+    date.setDate(date.getDate());
+    date.setDate(1);
+    this.FromDay = date.toISOString();
+
     this.getAbsenceType();
+    this.getHistoryData();
 
   }
 
   ngOnInit(): void {
 
-    let objUserName = localStorage.getItem("objUserName");
-    if (objUserName) {
-      let tempObj = JSON.parse(objUserName);
-      let expired = tempObj["expired"] || Date.now();
-      this.UserName = tempObj["UserName"];
+    let userName = localStorage.getItem("TaiKhoan");
+    if (userName) {
+
+      this.UserName = userName;
     }
 
 
   }
 
+  viewOption() {
+    this.ViewSearch = !this.ViewSearch;
+  }
+
+   onDeleteAction(UserName: any, TaskId: any) {
+  //   const alert = this.alertController.create({
+  //     message: '<center>Bạn chắc chắn muốn xóa nội dung này không?</center>',
+  //     buttons: [
+  //       {
+  //         text: 'Bỏ qua',
+  //         role: 'cancel',
+  //         cssClass: 'secondary',
+  //         handler: () => {
+  //           alert.dismiss();
+  //           return false;
+  //         }
+  //       }, {
+  //         text: 'Đồng ý xóa',
+  //         handler: () => {
+  //           this.delAbsence(UserName, TaskId);
+  //         }
+  //       }
+  //     ]
+  //   });
+  //  alert.present();
+  }
+
+  
+  delAbsence(UserName: any, TaskId: any) {
+
+    try {
+      let CODEORG = localStorage.getItem("MaDonVi");
+      if (CODEORG) {
+      
+        this.DelAbsenceData = this.share.delAbsence(CODEORG, UserName, TaskId);
+        if (this.DelAbsenceData != null) {
+          this.DelAbsenceData.subscribe(data => {
+            if (data.State == "OK") {
+              this.getHistoryData();
+            }
+            else {
+              this.toatr.showError("Lỗi: " + data.State);
+            }
+          },
+            error => {
+              this.toatr.showError("Lỗi: Xóa thông tin thất bại!");
+            })
+        }
+        else {
+          this.toatr.showError("Lỗi: Xóa thông tin thất bại!");
+        }
+        
+      
+      }
+      
+        
+
+    }
+    catch { }
+
+  }
+  
   getAbsenceType() {
 
     try {
       // BEGIN
       let CODEORG = localStorage.getItem("MaDonVi");
       if (CODEORG) {
-        let objUserName = localStorage.getItem("objUserName");
-        if (objUserName) {
-          let tempObj = JSON.parse(objUserName);
-          let expired = tempObj["expired"] || Date.now();
-          this.UserName = tempObj["UserName"];
+        let userName = localStorage.getItem("TaiKhoan");
+        if (userName) {
+
+          this.UserName = userName;
 
           this.AbsenceTypeData = this.share.getAbsenceType();
           if (this.AbsenceTypeData != null) {
@@ -84,7 +164,7 @@ export class NghiphepComponent implements OnInit {
   setAbsence() {
     let CODEORG = localStorage.getItem("MaDonVi");
     if (CODEORG) {
-console.log("87",this.AbsenceTypeId);
+      console.log("87", this.AbsenceTypeId);
       if (this.AbsenceTypeId == 0) {
         this.toatr.showError("Lỗi: Bạn chưa chọn loại nghỉ phép !");
         return;
@@ -95,7 +175,8 @@ console.log("87",this.AbsenceTypeId);
       if (this.AbsenceData != null) {
         this.AbsenceData.subscribe(data => {
           if (data.State == "OK") {
-            this.router.navigateByUrl('nv-nghiphep-lichsu');
+            this.getHistoryData();
+            // this.router.navigateByUrl('nv-nghiphep-lichsu');
             this.Saving = false;
           }
           else {
@@ -115,6 +196,36 @@ console.log("87",this.AbsenceTypeId);
 
 
     }
+  }
+
+
+  getHistoryData() {
+console.log("203");
+console.log(this.FromDay + " + " + this.ToDay);
+    try {
+
+      let CODEORG = localStorage.getItem("MaDonVi");
+      if (CODEORG) {
+        this.AbsenceHistoryData = this.share.getAbsenceHistory(CODEORG, this.UserName, 0, this.FromDay, this.ToDay);
+        if (this.AbsenceHistoryData != null) {
+          this.AbsenceHistoryData.subscribe(data => {
+            this.AbsenceHistoryData = data;
+            this.AbsenceHistory = data;
+            this.AbsenceHistoryAll = data;
+            if (data != null) {
+              this.TotalItem = this.AbsenceHistory.length;
+            }
+          })
+        }
+      
+      }
+
+
+
+
+    }
+    catch { }
+
   }
 
 
