@@ -33,7 +33,7 @@ export class NghiphepComponent implements OnInit {
   ViewSearch: boolean = false;
   ToDay: string = new Date().toISOString();
   FromDay: string = new Date(new Date().getTime() - (7 * (1 * 24 * 60 * 60 * 1000))).toISOString();
-  
+
 
   tuNgay: string = new Date().toISOString();
   denNgay: string = new Date(new Date().getTime() + (1 * (1 * 24 * 60 * 60 * 1000))).toISOString();
@@ -72,36 +72,36 @@ export class NghiphepComponent implements OnInit {
     this.ViewSearch = !this.ViewSearch;
   }
 
-   onDeleteAction(UserName: any, TaskId: any) {
-  //   const alert = this.alertController.create({
-  //     message: '<center>Bạn chắc chắn muốn xóa nội dung này không?</center>',
-  //     buttons: [
-  //       {
-  //         text: 'Bỏ qua',
-  //         role: 'cancel',
-  //         cssClass: 'secondary',
-  //         handler: () => {
-  //           alert.dismiss();
-  //           return false;
-  //         }
-  //       }, {
-  //         text: 'Đồng ý xóa',
-  //         handler: () => {
-  //           this.delAbsence(UserName, TaskId);
-  //         }
-  //       }
-  //     ]
-  //   });
-  //  alert.present();
+  onDeleteAction(UserName: any, TaskId: any) {
+    //   const alert = this.alertController.create({
+    //     message: '<center>Bạn chắc chắn muốn xóa nội dung này không?</center>',
+    //     buttons: [
+    //       {
+    //         text: 'Bỏ qua',
+    //         role: 'cancel',
+    //         cssClass: 'secondary',
+    //         handler: () => {
+    //           alert.dismiss();
+    //           return false;
+    //         }
+    //       }, {
+    //         text: 'Đồng ý xóa',
+    //         handler: () => {
+    //           this.delAbsence(UserName, TaskId);
+    //         }
+    //       }
+    //     ]
+    //   });
+    //  alert.present();
   }
 
-  
+
   delAbsence(UserName: any, TaskId: any) {
 
     try {
       let CODEORG = localStorage.getItem("MaDonVi");
       if (CODEORG) {
-      
+
         this.DelAbsenceData = this.share.delAbsence(CODEORG, UserName, TaskId);
         if (this.DelAbsenceData != null) {
           this.DelAbsenceData.subscribe(data => {
@@ -119,17 +119,17 @@ export class NghiphepComponent implements OnInit {
         else {
           this.toatr.showError("Lỗi: Xóa thông tin thất bại!");
         }
-        
-      
+
+
       }
-      
-        
+
+
 
     }
     catch { }
 
   }
-  
+
   getAbsenceType() {
 
     try {
@@ -200,8 +200,6 @@ export class NghiphepComponent implements OnInit {
 
 
   getHistoryData() {
-console.log("203");
-console.log(this.FromDay + " + " + this.ToDay);
     try {
 
       let CODEORG = localStorage.getItem("MaDonVi");
@@ -217,7 +215,7 @@ console.log(this.FromDay + " + " + this.ToDay);
             }
           })
         }
-      
+
       }
 
 

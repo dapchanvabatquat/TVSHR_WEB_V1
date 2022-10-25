@@ -47,7 +47,7 @@
     <table style="width:100%">
         <tr>
             <td style="width:40%; padding-right: 10px;">
-                <textarea [(ngModel)]="Note" placeholder="Phần thông tin diễn giải khác ..."
+                <textarea [(ngModel)]="Note"
                     style="height: 100px; width: 100%; border:solid 1px #ddd; border-radius: 2px; text-align: justify!important; padding-left: 0px; padding-right: 0px; margin-top: 0px!important;font-size: 25px;">
                 </textarea>
             </td>
@@ -69,69 +69,74 @@
     Không có thông tin nào để hiển thị.
   </div>
 
-  <div style="margin-top:10px;">
+  <div style="margin-top:10px;padding-left: 10px;width: 98%;">
     <div
-      style="margin: auto!important; width: 96%; text-align: center; padding: 10px; border-radius: 4px; height: 70px; box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+      style="margin: auto!important; width: 96%; text-align: center; padding: 10px; border-radius: 4px; height: 70px;">
 
-      <table style="width: 100%!important; max-width: 100%!important;">
+      <table style="width: 100%!important; max-width: 100%!important;padding-left: 10px; padding-right: 5px;">
         <tr>
-          <td style="text-align: left; padding-left: 10px; font-weight: bold; color: #21409a;">
+          <td style="width:5%; text-align: left;  font-weight: bold; color: #21409a;">
             <i class="bi bi-calendar" style="font-size: 25px;"></i>
           </td>
-          <td style="text-align: left; width: 300px!important; padding: 10px!important; padding-right: 5px!important;">
+          <td style="text-align: left; width: 10%!important; padding: 10px!important; padding-right: 5px!important;">
             <input type="date" (change)="getHistoryData()" displayFormat="DD/MM/YYYY" [ngModel]="this.FromDay | date:'yyyy-MM-dd'"
                     (ngModelChange)="this.FromDay= $event" min="2015-01-01" max="2025-12-31" class="form-control">
           </td>
-          <td style="text-align: center;"> - </td>
-          <td style="text-align: left; width: 300px!important; padding: 10px!important; padding-left: 5px!important; text-align: right;">
+          <td style="text-align: center; width:2%"> - </td>
+          <td style="text-align: left; width: 10%!important; padding: 10px!important; padding-left: 5px!important; text-align: right;">
             <input type="date" (change)="getHistoryData()" displayFormat="DD/MM/YYYY" [ngModel]="this.ToDay| date:'yyyy-MM-dd'"
                     (ngModelChange)="this.ToDay = $event" min="2015-01-01" max="2025-12-31" class="form-control">
+          </td>
+          <td style="width:65%">
+
           </td>
         </tr>
       </table>
 
     </div>
-  </div>
+
+    <div style="padding: 10px!important;">
+
+      <div *ngFor="let item of AbsenceHistory"
+        style="margin-top: 5px; margin-bottom: 0px; padding-left: 5px!important; padding-right: 5px!important;">
   
-  <div style="padding: 10px!important;">
-
-    <div *ngFor="let item of AbsenceHistory"
-      style="margin-top: 5px; margin-bottom: 0px; padding-left: 5px!important; padding-right: 5px!important;">
-
-      <div style="margin-bottom: 15px; border-bottom: solid 1px #cecece; padding-bottom: 15px;">
-
-        <table style="width: 100%!important; max-width: 100%!important;">
-          <tr>
-            <td rowspan = "2" style="width: 40px; vertical-align: top;">
-                <i class="bi bi-puzzle"></i>
-              <!-- <ion-icon name="extension-puzzle-outline" style="font-size: 30px;"></ion-icon> -->
-            </td>
-            <td>
-              <div>
-                {{item.AbsenceTyName}}
-              </div>
-              <div style="font-size: 14px; margin-top: 5px;">
-                {{item.FromDay}} - {{item.ToDay}}
-              </div>
-            </td>
-            <td rowspan = "2" style="width: 30px; text-align: right;">
-
-                <i class="bi bi-check-circle" *ngIf = "item.ConfirmState"></i>
-                <i class="bi bi-trash" *ngIf = "!item.ConfirmState" (click)="onDeleteAction(item.UserName,item.Id)"></i>
-
-              <!-- <ion-icon *ngIf = "item.ConfirmState" name="checkbox-outline" style="font-size: 30px;"></ion-icon>
-              <ion-icon *ngIf = "!item.ConfirmState" (click)="onDeleteAction(item.UserName,item.Id)" name="trash-outline"
-                  style="color: #000; font-size: 20px; margin-bottom: -5px;"></ion-icon> -->
-            </td>
-          </tr>
-          <tr *ngIf = "item.Note != ''">
-            <td style = "padding-top: 5px; font-size: 14px;">
-              {{item.Note}}
-            </td>
-          </tr>
-        </table>
+        <div style="margin-bottom: 15px; border-bottom: solid 1px #cecece; padding-bottom: 15px;">
+  
+          <table style="width: 100%!important; max-width: 100%!important;">
+            <tr>
+              <td rowspan = "2" style="width: 40px; vertical-align: top;padding-left: 10px;">
+                  <i class="bi bi-puzzle"></i>
+                <!-- <ion-icon name="extension-puzzle-outline" style="font-size: 30px;"></ion-icon> -->
+              </td>
+              <td>
+                <div>
+                  {{item.AbsenceTyName}}
+                </div>
+                <div style="font-size: 14px; margin-top: 5px;">
+                  {{item.FromDay}} - {{item.ToDay}}
+                </div>
+              </td>
+              <td rowspan = "2" style="width: 30px; text-align: right;padding-left: 20px;">
+  
+                  <i class="bi bi-check-circle" *ngIf = "item.ConfirmState"></i>
+                  <i class="bi bi-trash" *ngIf = "!item.ConfirmState" (click)="onDeleteAction(item.UserName,item.Id)"></i>
+  
+                <!-- <ion-icon *ngIf = "item.ConfirmState" name="checkbox-outline" style="font-size: 30px;"></ion-icon>
+                <ion-icon *ngIf = "!item.ConfirmState" (click)="onDeleteAction(item.UserName,item.Id)" name="trash-outline"
+                    style="color: #000; font-size: 20px; margin-bottom: -5px;"></ion-icon> -->
+              </td>
+            </tr>
+            <tr *ngIf = "item.Note != ''">
+              <td style = "padding-top: 5px; font-size: 14px;">
+                {{item.Note}}
+              </td>
+            </tr>
+          </table>
+        </div>
+  
       </div>
-
+  
     </div>
 
   </div>
+  
