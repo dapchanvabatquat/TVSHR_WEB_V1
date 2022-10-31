@@ -409,7 +409,20 @@ export const ROUTE_DATA: TypeRoute[] = [
             },
         ]
     },
+    {
+        name :'Quản lý Công việc',
+        roles: ["SuperAdmin", "Admin"],
+        children : [
 
+            {
+                name :'Công việc',
+                url:'nv-congviec',
+                // roles: ["SuperAdmin", "Admin"],
+
+            }
+            
+        ]
+    },
     {
         name :'Trợ giúp',
         roles: ["SuperAdmin", "Admin"],
@@ -446,7 +459,9 @@ export const ROUTE_DATA: TypeRoute[] = [
 
             },
         ]
-    }
+    },
+    
+
 
 
    

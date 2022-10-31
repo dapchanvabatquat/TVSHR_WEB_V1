@@ -23,7 +23,7 @@
                 Từ ngày
             </td>
             <td style="width: 25%!important; padding: 10px!important; padding-left: 10px!important;">
-                <input type="date" displayFormat="DD/MM/YYYY" [ngModel]="this.tuNgay | date:'yyyy-MM-dd'"
+                <input type="date" displayFormat="DD/MM/YYYY" [ngModel]="this.tuNgay | date:'yyyy-MM-dd'" 
                     (ngModelChange)="this.tuNgay = $event" min="2015-01-01" max="2025-12-31" class="form-control">
             </td>
             <td style="width:10%; text-align: center;">
@@ -78,16 +78,16 @@
           <td style="width:5%; text-align: left;  font-weight: bold; color: #21409a;">
             <i class="bi bi-calendar" style="font-size: 25px;"></i>
           </td>
-          <td style="text-align: left; width: 10%!important; padding: 10px!important; padding-right: 5px!important;">
-            <input type="date" (change)="getHistoryData()" displayFormat="DD/MM/YYYY" [ngModel]="this.FromDay | date:'yyyy-MM-dd'"
+          <td style="text-align: left; width: 20%!important; padding: 10px!important; padding-right: 5px!important;">
+            <input type="date" (change)="getHistoryData()" displayFormat="DD/MM/YYYY HH:mm" [ngModel]="this.FromDay | date:'yyyy-MM-dd'"
                     (ngModelChange)="this.FromDay= $event" min="2015-01-01" max="2025-12-31" class="form-control">
           </td>
           <td style="text-align: center; width:2%"> - </td>
-          <td style="text-align: left; width: 10%!important; padding: 10px!important; padding-left: 5px!important; text-align: right;">
-            <input type="date" (change)="getHistoryData()" displayFormat="DD/MM/YYYY" [ngModel]="this.ToDay| date:'yyyy-MM-dd'"
+          <td style="text-align: left; width: 20%!important; padding: 10px!important; padding-left: 5px!important; text-align: right;">
+            <input type="date" (change)="getHistoryData()" displayFormat="DD/MM/YYYY HH:mm" [ngModel]="this.ToDay| date:'yyyy-MM-dd'"
                     (ngModelChange)="this.ToDay = $event" min="2015-01-01" max="2025-12-31" class="form-control">
           </td>
-          <td style="width:65%">
+          <td style="width:45%">
 
           </td>
         </tr>
@@ -120,10 +120,6 @@
   
                   <i class="bi bi-check-circle" *ngIf = "item.ConfirmState"></i>
                   <i class="bi bi-trash" *ngIf = "!item.ConfirmState" (click)="onDeleteAction(item.UserName,item.Id)"></i>
-  
-                <!-- <ion-icon *ngIf = "item.ConfirmState" name="checkbox-outline" style="font-size: 30px;"></ion-icon>
-                <ion-icon *ngIf = "!item.ConfirmState" (click)="onDeleteAction(item.UserName,item.Id)" name="trash-outline"
-                    style="color: #000; font-size: 20px; margin-bottom: -5px;"></ion-icon> -->
               </td>
             </tr>
             <tr *ngIf = "item.Note != ''">

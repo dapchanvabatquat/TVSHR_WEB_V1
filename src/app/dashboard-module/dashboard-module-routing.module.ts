@@ -13,6 +13,8 @@ import { NotfoundComponent } from './Component/notfound/notfound.component';
 import { DanhsachnhanvienComponent } from './Component/danhsachnhanvien/danhsachnhanvien.component';
 import { TrangchuComponent } from './Component/trangchu/trangchu.component';
 import { NghiphepComponent } from './Component/nghiphep/nghiphep.component';
+import { NvCongviecComponent } from './Component/nv-congviec/nv-congviec.component';
+import { NvCongviecThemmoiComponent } from './Component/nv-congviec-themmoi/nv-congviec-themmoi.component';
 
 const routes: Routes = [
   {
@@ -37,7 +39,8 @@ const routes: Routes = [
       { path: 'EmpList', component: DanhsachnhanvienComponent },
       { path: 'trang-chu', component: TrangchuComponent },
       { path: 'Nghi-Phep', component: NghiphepComponent },
-
+      { path: 'nv-congviec', component: NvCongviecComponent },
+      { path: 'nv-congviec-themmoi', component: NvCongviecThemmoiComponent },
     ]
     }
 ];

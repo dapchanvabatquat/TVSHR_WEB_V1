@@ -1,0 +1,83 @@
+<div style="position: absolute; top: 40%; left: 40%;">
+  <mat-spinner *ngIf="this.Loading == true"></mat-spinner>
+</div>
+<div style="background-color: white; padding: 20px 23px; border: 1px solid rgba(0,0,0,.125);">
+
+  <div class="row">
+    <div class="row">
+        <div class="mb-3 col-sm-5" style="text-align: right;">
+         <table style="width:100%;">
+          <tr>
+            <td>
+              <input type="date" displayFormat="DD/MM/YYYY" [ngModel]="this.FromDay | date:'yyyy-MM-dd'" 
+              (ngModelChange)="this.FromDay = $event" (change)="getData()" min="2015-01-01" max="2025-12-31" class="form-control">
+            </td>
+            <td style="text-align: center;">
+-
+            </td>
+            <td>
+              <input type="date" displayFormat="DD/MM/YYYY" [ngModel]="this.ToDay | date:'yyyy-MM-dd'" 
+              (ngModelChange)="this.ToDay = $event" (change)="getData()" min="2015-01-01" max="2025-12-31" class="form-control">
+            </td>
+          </tr>
+         </table>
+      </div>
+      <div class=" col-sm-1" style="text-align: left;">
+        <mat-icon style="vertical-align: middle!important;; text-align: left;
+        color: blue;
+        margin-top: 5px;" title="Thêm việc mới" data-toggle="modal" (click)="openJob()">
+          add_circle_outline</mat-icon>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="row">
+    <!-- <div *ngIf="isLoading">
+        </div> -->
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th style="text-align: left;width:20px;">STT</th>
+            <th>Tên đầu việc</th>
+            <th style="width:150px;">Họ và tên</th>
+            <th>Thời gian xử lý</th>
+          </tr>
+        </thead>
+        <tbody style="border-top: none;">
+          <tr *ngFor="let item of TaskHistory; index as i" class="align-middle">
+            <td style="text-align: center;">{{i + 1}}</td>
+            <td>{{item.TaskName}}</td>
+            <td>{{item.FullNameAction}}</td>
+            <td> {{item.FromDay | date: 'dd/MM/yyyy'}} - {{item.ToDay | date: 'dd/MM/yyyy'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
+
+<div *ngIf="showModalBox" class="modal" id="myModal" #content>
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+        Modal body..
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+

@@ -73,6 +73,10 @@ export class NghiphepComponent implements OnInit {
   }
 
   onDeleteAction(UserName: any, TaskId: any) {
+    if (confirm("Bạn chắc chắc muốn xóa ? ")) {
+      this.delAbsence(UserName, TaskId);
+    }
+
     //   const alert = this.alertController.create({
     //     message: '<center>Bạn chắc chắn muốn xóa nội dung này không?</center>',
     //     buttons: [
@@ -97,6 +101,7 @@ export class NghiphepComponent implements OnInit {
 
 
   delAbsence(UserName: any, TaskId: any) {
+    console.log("105", TaskId);
 
     try {
       let CODEORG = localStorage.getItem("MaDonVi");
@@ -106,6 +111,7 @@ export class NghiphepComponent implements OnInit {
         if (this.DelAbsenceData != null) {
           this.DelAbsenceData.subscribe(data => {
             if (data.State == "OK") {
+              this.toatr.showSuccess("Cập nhật thông tin thành công !");
               this.getHistoryData();
             }
             else {
@@ -175,6 +181,7 @@ export class NghiphepComponent implements OnInit {
       if (this.AbsenceData != null) {
         this.AbsenceData.subscribe(data => {
           if (data.State == "OK") {
+            this.toatr.showSuccess("Cập nhật thông tin thành công !");
             this.getHistoryData();
             // this.router.navigateByUrl('nv-nghiphep-lichsu');
             this.Saving = false;
@@ -217,9 +224,6 @@ export class NghiphepComponent implements OnInit {
         }
 
       }
-
-
-
 
     }
     catch { }

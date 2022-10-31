@@ -66,11 +66,27 @@ console.log("Token1", this._Token);
     return this.httpService.getTaskAction('/getAbsenceHistory', this._Token, { "CODEORG":CODEORG,"UserName":UserName,"AbsenceTypeId":AbsenceTypeId,"FromDay":FromDay,"ToDay":ToDay})
   }
 
+  getTaskHistory(CODEORG: any, UserName: any,TypeId: any,FromDay: any,ToDay: any,DeptId: any)
+  {
+
+    this._Token = localStorage.getItem("Token");
+    return this.httpService.getTaskAction('/getTaskHistory', this._Token, { "CODEORG":CODEORG,"UserName":UserName,"TypeId":TypeId,"FromDay":FromDay,"ToDay":ToDay, "DeptId":DeptId})
+  }
+
+  getTaskType(CODEORG: any)
+  {
+
+    this._Token = localStorage.getItem("Token");
+    return this.httpService.getTaskAction('/getTaskType', this._Token, { "CODEORG":CODEORG})
+  }
+
+
+
   delAbsence(CODEORG: string, UserName: string, TaskId: number)
   {
 
     this._Token = localStorage.getItem("Token");
-    return this.httpService.getTaskAction('/delAbsence', this._Token, { "CODEORG":CODEORG,"UserName":UserName,"TaskId":TaskId})
+    return this.httpService.getTaskAction('/delAbsence', this._Token, { "CODEORG":CODEORG, "UserName":UserName, "Id":TaskId})
   }
 
 

@@ -37,6 +37,8 @@ import { SettingIndexComponent } from './Component/setting/setting-index/setting
 import { DanhsachnhanvienComponent } from './Component/danhsachnhanvien/danhsachnhanvien.component';
 import { TrangchuComponent } from './Component/trangchu/trangchu.component';
 import { NghiphepComponent } from './Component/nghiphep/nghiphep.component';
+import { NvCongviecComponent } from './Component/nv-congviec/nv-congviec.component';
+import { NvCongviecThemmoiComponent } from './Component/nv-congviec-themmoi/nv-congviec-themmoi.component';
 
 
 
@@ -63,6 +65,8 @@ import { NghiphepComponent } from './Component/nghiphep/nghiphep.component';
     DanhsachnhanvienComponent,
     TrangchuComponent,
     NghiphepComponent,
+    NvCongviecComponent,
+    NvCongviecThemmoiComponent,
   ],
   imports: [
     CommonModule,
